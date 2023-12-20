@@ -7,5 +7,5 @@ script = ExtResource("1_opsf4")
 id = "crit_chance"
 max_quantity = 5
 experience_cost = 200
-title = "Damage"
+title = "Crit Chance"
 description = "Increases critical strike chance by 2%."
