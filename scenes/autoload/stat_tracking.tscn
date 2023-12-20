@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfr23cr17x20t"]
+
+[ext_resource type="Script" path="res://scenes/autoload/stat_tracking.gd" id="1_omcka"]
+
+[node name="StatTracking" type="Node"]
+script = ExtResource("1_omcka")

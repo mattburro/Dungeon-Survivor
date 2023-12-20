@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bboutkxvn44jp"]
+
+[ext_resource type="Texture2D" uid="uid://dfwaqm3cor0o6" path="res://scenes/ability/dagger_ability/dagger.png" id="1_mrhgl"]
+[ext_resource type="Script" path="res://scenes/ability/dagger_ability/dagger_ability.gd" id="1_r7m1l"]
+[ext_resource type="PackedScene" uid="uid://0iumf3qvpeun" path="res://scenes/component/hit_box_component.tscn" id="2_5fpa6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oooht"]
+radius = 5.0
+height = 16.0
+
+[node name="DaggerAbility" type="Node2D"]
+script = ExtResource("1_r7m1l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, 0)
+rotation = 1.5708
+texture = ExtResource("1_mrhgl")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("2_5fpa6")]
+position = Vector2(7, 0)
+rotation = 1.5708
+collision_mask = 5
+input_pickable = false
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CapsuleShape2D_oooht")

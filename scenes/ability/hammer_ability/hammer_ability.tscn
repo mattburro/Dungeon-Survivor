@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlx6ukut02yco"]
+
+[ext_resource type="Texture2D" uid="uid://c7k6t1fsmvg7q" path="res://scenes/ability/hammer_ability/hammer.png" id="1_4rxx4"]
+[ext_resource type="Script" path="res://scenes/ability/hammer_ability/hammer_ability.gd" id="1_jodui"]
+[ext_resource type="PackedScene" uid="uid://0iumf3qvpeun" path="res://scenes/component/hit_box_component.tscn" id="3_v7jtq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvedl"]
+size = Vector2(18, 14)
+
+[node name="HammerAbility" type="Node2D"]
+script = ExtResource("1_jodui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+rotation = 1.5708
+texture = ExtResource("1_4rxx4")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_v7jtq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_fvedl")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://cmhyai3qbwibn"]
+
+[ext_resource type="Script" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_s5w0i"]
+
+[resource]
+script = ExtResource("1_s5w0i")
+id = "damage"
+max_quantity = 5
+experience_cost = 150
+title = "Damage"
+description = "Increases all damage by 3%."

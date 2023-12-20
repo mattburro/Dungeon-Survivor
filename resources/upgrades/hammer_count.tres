@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://ccrouo5m1u13a"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_n5l8k"]
+
+[resource]
+script = ExtResource("1_n5l8k")
+id = "hammer_count"
+max_quantity = 4
+name = "Hammer Count"
+description = "Flings an additional hammer."

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://c63007jymvm1n"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_pcv6q"]
+
+[resource]
+script = ExtResource("1_pcv6q")
+id = "spear_damage"
+max_quantity = 10
+name = "Spear Damage"
+description = "Increases spear damage by 25%."

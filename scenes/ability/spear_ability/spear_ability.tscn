@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://04y0xov1y04x"]
+
+[ext_resource type="Texture2D" uid="uid://syegb7w2vdov" path="res://scenes/ability/spear_ability/spear.png" id="1_djb7w"]
+[ext_resource type="Script" path="res://scenes/ability/spear_ability/spear_ability.gd" id="1_qqyx0"]
+[ext_resource type="PackedScene" uid="uid://0iumf3qvpeun" path="res://scenes/component/hit_box_component.tscn" id="2_tieop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwikb"]
+size = Vector2(18, 10)
+
+[node name="SpearAbility" type="Node2D"]
+script = ExtResource("1_qqyx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+rotation = 1.5708
+texture = ExtResource("1_djb7w")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("2_tieop")]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_fwikb")

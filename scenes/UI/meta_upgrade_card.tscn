@@ -1,0 +1,229 @@
+[gd_scene load_steps=18 format=3 uid="uid://bfniha6ern20p"]
+
+[ext_resource type="Script" path="res://scenes/UI/meta_upgrade_card.gd" id="1_c6ept"]
+[ext_resource type="PackedScene" uid="uid://cc7gsjrgovjk" path="res://scenes/component/random_audio_stream_player_component.tscn" id="2_dlrpx"]
+[ext_resource type="AudioStream" uid="uid://b8ne47o81xjkk" path="res://assets/audio/switch1.ogg" id="3_jqomv"]
+[ext_resource type="AudioStream" uid="uid://e3ag0w6ey4x2" path="res://assets/audio/switch2.ogg" id="4_sfl65"]
+[ext_resource type="AudioStream" uid="uid://bnbqaqsosudfr" path="res://assets/audio/switch3.ogg" id="5_qyckx"]
+[ext_resource type="AudioStream" uid="uid://crx7da3sxcxcr" path="res://assets/audio/switch4.ogg" id="6_cqu1a"]
+[ext_resource type="AudioStream" uid="uid://bsg6vvvor0wqk" path="res://assets/audio/switch5.ogg" id="7_6fjld"]
+[ext_resource type="AudioStream" uid="uid://c8jytwwygx3uj" path="res://assets/audio/switch6.ogg" id="8_sefhq"]
+[ext_resource type="AudioStream" uid="uid://kbfvoxsu875" path="res://assets/audio/switch7.ogg" id="9_5qxly"]
+[ext_resource type="AudioStream" uid="uid://cdvbc4k31rgyl" path="res://assets/audio/switch8.ogg" id="10_otqgi"]
+[ext_resource type="AudioStream" uid="uid://cv0plrif8cx7d" path="res://assets/audio/switch9.ogg" id="11_55ud0"]
+[ext_resource type="AudioStream" uid="uid://cgrskkejg58rn" path="res://assets/audio/switch10.ogg" id="12_y30ps"]
+[ext_resource type="Texture2D" uid="uid://b8gylacrnwjpa" path="res://scenes/game_object/experience_vial/experience_vial.png" id="13_xb1lu"]
+
+[sub_resource type="Animation" id="Animation_trthg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qjjqr"]
+resource_name = "selected"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 2, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.25133, 1.25133), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.387483, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ClickPlayerComponent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d0k51"]
+_data = {
+"RESET": SubResource("Animation_trthg"),
+"selected": SubResource("Animation_qjjqr")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnk14"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.458824, 0.890196, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.458824, 0.890196, 1, 0)
+
+[node name="MetaUpgradeCard" type="PanelContainer" groups=["meta_upgrade_card"]]
+custom_minimum_size = Vector2(170, 195)
+pivot_offset = Vector2(75, 75)
+script = ExtResource("1_c6ept")
+
+[node name="ClickPlayerComponent" parent="." instance=ExtResource("2_dlrpx")]
+streams = Array[AudioStream]([ExtResource("3_jqomv"), ExtResource("4_sfl65"), ExtResource("5_qyckx"), ExtResource("6_cqu1a"), ExtResource("7_6fjld"), ExtResource("8_sefhq"), ExtResource("9_5qxly"), ExtResource("10_otqgi"), ExtResource("11_55ud0"), ExtResource("12_y30ps")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d0k51")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"AlternatePanelContainer"
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.148438, 0.167969, 0.265625, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Test Name That Spans"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_constants/outline_size = 4
+text = "Test description that spans multiple lines"
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("13_xb1lu")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
+theme_override_constants/outline_size = 4
+text = "50/200"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+
+[node name="QuantityLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
+theme_override_constants/outline_size = 4
+text = "0/5"
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_jnk14")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "Purchase"

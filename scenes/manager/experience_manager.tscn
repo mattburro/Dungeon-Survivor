@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4coejbsp3h0p"]
+
+[ext_resource type="Script" path="res://scenes/manager/experience_manager.gd" id="1_olk8b"]
+
+[sub_resource type="Curve" id="Curve_4ksll"]
+min_value = 1.0
+max_value = 9.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 9), 17.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="ExperienceManager" type="Node"]
+script = ExtResource("1_olk8b")
+experience_growth_curve = SubResource("Curve_4ksll")

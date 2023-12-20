@@ -1,0 +1,301 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmmvuygvxek5b"]
+
+[ext_resource type="Script" path="res://scenes/UI/end_screen.gd" id="1_s51e1"]
+[ext_resource type="AudioStream" uid="uid://cpvjmos5jgqvo" path="res://assets/audio/gameover_victory.mp3" id="2_ibp4p"]
+[ext_resource type="PackedScene" uid="uid://dyidx8qj438k3" path="res://scenes/UI/sound_button.tscn" id="2_qw6a3"]
+[ext_resource type="AudioStream" uid="uid://bx3tprngaqoth" path="res://assets/audio/gameover_defeat.mp3" id="3_ucxpd"]
+[ext_resource type="Texture2D" uid="uid://csgclpcdf3q20" path="res://assets/vfx/white square.png" id="4_uxxiw"]
+
+[sub_resource type="Animation" id="Animation_bpjix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j61ph"]
+resource_name = "in"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_st8tp"]
+resource_name = "out"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hho1j"]
+_data = {
+"RESET": SubResource("Animation_bpjix"),
+"in": SubResource("Animation_j61ph"),
+"out": SubResource("Animation_st8tp")
+}
+
+[sub_resource type="Gradient" id="Gradient_hjnbh"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.00343643)
+
+[sub_resource type="Gradient" id="Gradient_wb2vd"]
+offsets = PackedFloat32Array(0, 0.151203, 0.305842, 0.446735, 0.608247, 0.75945, 0.886598, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.575, 0.15, 1, 0.976667, 1, 0.3, 1, 0.449333, 1, 0.44, 1, 0, 0.216667, 1, 1, 0.636, 0.16, 1, 1, 1, 0.65, 0.865833, 1, 1, 1, 1, 1)
+
+[node name="VictoryScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_s51e1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "in"
+libraries = {
+"": SubResource("AnimationLibrary_hho1j")
+}
+
+[node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ibp4p")
+volume_db = -5.0
+bus = &"sfx"
+
+[node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ucxpd")
+volume_db = -5.0
+bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.607843, 0.298039, 0.639216, 0.352941)
+
+[node name="VictoryParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(312, -10)
+amount = 300
+lifetime = 20.0
+fixed_fps = 60
+draw_order = 1
+texture = ExtResource("4_uxxiw")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+angular_velocity_min = 10.0
+angular_velocity_max = 20.0
+radial_accel_min = -2.0
+radial_accel_max = 2.0
+scale_amount_min = 0.04
+scale_amount_max = 0.12
+color_ramp = SubResource("Gradient_hjnbh")
+color_initial_ramp = SubResource("Gradient_wb2vd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanelContainer" type="PanelContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainPanelContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainPanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_constants/outline_size = 8
+text = "You won!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_qw6a3")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play Again"
+
+[node name="UpgradesButton" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_qw6a3")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrades"
+
+[node name="QuitButton" parent="MarginContainer/MainPanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_qw6a3")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to Menu"
+
+[node name="StatsPanelContainer" type="PanelContainer" parent="."]
+offset_left = -185.0
+offset_top = 25.0
+offset_right = -16.0
+offset_bottom = 304.0
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"AlternatePanelContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "Time:"
+
+[node name="TimePlayedLabel" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BlueOutlineLabel"
+text = "15:00"
+horizontal_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "Level:"
+
+[node name="LevelLabel" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BlueOutlineLabel"
+text = "100"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "Enemies Killed:"
+
+[node name="EnemiesKilledLabel" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BlueOutlineLabel"
+text = "9999"
+horizontal_alignment = 2
+
+[node name="DamageTable" type="VBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DamageTable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DamageTable/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "Weapon"
+
+[node name="Label2" type="Label" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DamageTable/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BlueOutlineLabel"
+text = "Damage"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="StatsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DamageTable"]
+layout_mode = 2

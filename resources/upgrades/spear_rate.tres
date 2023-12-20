@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://cketgwjkeocor"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_nm1hx"]
+
+[resource]
+script = ExtResource("1_nm1hx")
+id = "spear_rate"
+max_quantity = 5
+name = "Spear Speed"
+description = "Increases spear attack rate by 10%."

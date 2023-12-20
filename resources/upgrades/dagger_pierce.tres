@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dclelqcuynh2j"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_wtob6"]
+
+[resource]
+script = ExtResource("1_wtob6")
+id = "dagger_pierce"
+max_quantity = 2
+name = "Dagger Piercing"
+description = "Daggers pierce through an additional enemy."

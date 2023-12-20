@@ -1,0 +1,29 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvobw577o46x0"]
+
+[ext_resource type="Script" path="res://scenes/manager/enemy_manager.gd" id="1_j5fmf"]
+[ext_resource type="PackedScene" uid="uid://bawsc0jkl1cex" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="2_duo6c"]
+[ext_resource type="PackedScene" uid="uid://btfe8wvpaffj0" path="res://scenes/game_object/wizard_enemy/wizard_enemy.tscn" id="3_edlok"]
+[ext_resource type="PackedScene" uid="uid://byx3dmkbtcumd" path="res://scenes/game_object/bat_enemy/bat_enemy.tscn" id="4_7oi5j"]
+[ext_resource type="PackedScene" uid="uid://cwuq5a5yox5wk" path="res://scenes/game_object/wizard_enemy_2/wizard_enemy_2.tscn" id="4_t3omt"]
+[ext_resource type="PackedScene" uid="uid://c78sotkjsc4cq" path="res://scenes/game_object/crab_enemy/crab_enemy.tscn" id="5_g42ym"]
+[ext_resource type="PackedScene" uid="uid://bj2emr0c3nmt" path="res://scenes/game_object/ghost_enemy/ghost_enemy.tscn" id="6_6xoga"]
+[ext_resource type="PackedScene" uid="uid://dv1ib4e7x6kqj" path="res://scenes/game_object/spider_enemy/spider_enemy.tscn" id="7_5r2h6"]
+[ext_resource type="PackedScene" uid="uid://bv6tu1kcq1c58" path="res://scenes/game_object/cyclops_enemy/cyclops_enemy.tscn" id="9_gi5gk"]
+[ext_resource type="PackedScene" uid="uid://2ov4bk2villc" path="res://scenes/game_object/chest_enemy/chest_enemy.tscn" id="10_j522x"]
+
+[node name="EnemyManager" type="Node"]
+script = ExtResource("1_j5fmf")
+basic_enemy_scene = ExtResource("2_duo6c")
+wizard_enemy_scene = ExtResource("3_edlok")
+wizard_enemy_2_scene = ExtResource("4_t3omt")
+bat_enemy_scene = ExtResource("4_7oi5j")
+crab_enemy_scene = ExtResource("5_g42ym")
+ghost_enemy_scene = ExtResource("6_6xoga")
+spider_enemy_scene = ExtResource("7_5r2h6")
+cyclops_enemy_scene = ExtResource("9_gi5gk")
+chest_enemy_scene = ExtResource("10_j522x")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://cp8e37lwohyud"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_negk5"]
+
+[resource]
+script = ExtResource("1_negk5")
+id = "axe_rotations"
+max_quantity = 3
+name = "Axe Distance"
+description = "Increases the distance that the axe travels by 33%."

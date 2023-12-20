@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://cwylswyngmlmb"]
+
+[ext_resource type="Script" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_60wjl"]
+
+[resource]
+script = ExtResource("1_60wjl")
+id = "additional_upgrade"
+max_quantity = 1
+experience_cost = 800
+title = "More Options"
+description = "Increases the number of upgrade options by 1."

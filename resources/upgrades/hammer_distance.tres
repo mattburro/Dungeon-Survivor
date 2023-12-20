@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://pkju0cxw6jnb"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_rgu3y"]
+
+[resource]
+script = ExtResource("1_rgu3y")
+id = "hammer_distance"
+max_quantity = 4
+name = "Hammer Distance"
+description = "Increases the distance that the hammer travels by 25%."

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmhymykrpbara"]
+
+[ext_resource type="Script" path="res://scenes/ability/dagger_ability_controller/dagger_ability_controller.gd" id="1_bttoa"]
+[ext_resource type="PackedScene" uid="uid://bboutkxvn44jp" path="res://scenes/ability/dagger_ability/dagger_ability.tscn" id="2_y1ngw"]
+
+[node name="DaggerAbilityController" type="Node"]
+script = ExtResource("1_bttoa")
+dagger_ability_scene = ExtResource("2_y1ngw")

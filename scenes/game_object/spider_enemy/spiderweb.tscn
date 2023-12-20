@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqajkalwsjlwf"]
+
+[ext_resource type="Texture2D" uid="uid://cx8rxxegyn8t7" path="res://scenes/game_object/spider_enemy/spider_sprite_sheet.png" id="1_bd03t"]
+[ext_resource type="Script" path="res://scenes/game_object/spider_enemy/spiderweb.gd" id="1_lkdyb"]
+
+[sub_resource type="Animation" id="Animation_kyg14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [63]
+}
+
+[sub_resource type="Animation" id="Animation_42lcj"]
+resource_name = "default"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_bd03t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [63, 64, 65, 66, 67, 68]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f18mx"]
+_data = {
+"RESET": SubResource("Animation_kyg14"),
+"default": SubResource("Animation_42lcj")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_or64e"]
+radius = 8.0
+
+[node name="Spiderweb" type="Area2D" groups=["spiderweb"]]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_lkdyb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["spiderweb"]]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_f18mx")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+texture = ExtResource("1_bd03t")
+offset = Vector2(-1, -5)
+hframes = 9
+vframes = 16
+frame = 63
+region_rect = Rect2(1, 230, 195, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CircleShape2D_or64e")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
